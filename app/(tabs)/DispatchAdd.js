@@ -1,10 +1,12 @@
+// AddProductForm.jsx
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
-import { router } from "expo-router";
-import { ref, push } from "firebase/database"; // Import necessary functions
-import { Real_time_database } from "../../firebaseConfig"; // Import your configured database
+import { View, TextInput,Text,TouchableOpacity  } from 'react-native';
+import { Link } from 'expo-router';
+import { ref,push } from "firebase/database"
+import { Real_time_database } from "../../firebaseConfig";
 
-const AddProductForm = () => {
+
+const AddDispatchForm = () => {
   const [form, setForm] = useState({
     productName: '',
     batchNo: '',
@@ -30,37 +32,39 @@ const AddProductForm = () => {
       setErrors(newErrors);
       return;
     }
-
-    // Push the product data to Firebase Realtime Database
-    const productsRef = ref(Real_time_database, 'products');
-    push(productsRef, form)
-      .then(() => {
-        console.log("Product added successfully");
-        alert("Product added successfully");
-        // Reset form
-        setForm({
-          productName: '',
-          batchNo: '',
-          receiver: '',
-          date: '',
-          quantity: '',
-        });
-      })
-      .catch((error) => {
-        console.error("Error adding product: ", error);
-        alert("Failed to add product. Please try again.");
+     // Push the dispatch data to Firebase Realtime Database
+    const dispatchRef = ref(Real_time_database, 'Dispatch Orders');
+    push(dispatchRef,form)
+    .then(() => {
+      console.log("Dispatch added successfully");
+      alert("Dispatch added successfully");
+      setForm({
+        productName: '',
+        batchNo: '',
+        receiver: '',
+        date: '',
+        quantity: '',
       });
+    })
+    .catch((error) => {
+      console.error("Error adding dispatch: ", error);
+      alert("Failed to add dispatch. Please try again.");
+    });
+
   };
 
   return (
     <View className="flex-1 p-7 mt-32">
       <View className="flex flex-row space-x-5">
-        <TouchableOpacity className="bg-yellow-500">
+        <TouchableOpacity className="bg-yellow-500" >
+        <Link href={"../app/(tabs)/AddProduct"}>
           <Text className="text-2xl font-bold">Product</Text>
+          </Link>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.navigate("../../components/DispatchAdd")}>
+        <TouchableOpacity>
           <Text className="text-2xl font-bold">Dispatch</Text>
         </TouchableOpacity>
+
       </View>
       <View className="mb-4">
         <Text>Product Name</Text>
@@ -114,11 +118,14 @@ const AddProductForm = () => {
         {errors.quantity && <Text className="text-red-500 text-xs">{errors.quantity}</Text>}
       </View>
 
-      <TouchableOpacity className="bg-yellow-500 rounded p-3 w-40 text-center ml-20 mt-5" title="Submit" onPress={handleSubmit}>
-        <Text className="text-white text-center font-semibold">Add Product</Text>
+      <TouchableOpacity className = "bg-yellow-500 rounded p-3 w-40 text-center ml-20 mt-5"  title="Submit" onPress={handleSubmit}>
+        <Text className="text-white text-center font-semibold">Dispatch Order</Text>
       </TouchableOpacity>
+      
+      
+    
     </View>
   );
 };
 
-export default AddProductForm;
+export default AddDispatchForm;
