@@ -5,7 +5,8 @@ import React from 'react'
 
 const open_screen = () => {
   return (
-    <View className = "items-center flex-1 mt-28  ">
+  
+    <View className = "items-center flex-1 mt-28 ">
     <Image source={require("../../assets/images/Yara_Foods.jpg")} className="rounded-lg w-[100px] h-[100px]"></Image>
     <Text className="font-semibold text-xl text-center items-center mt-12"> Welcome to the Yara Foods! </Text>
     <TouchableOpacity
@@ -21,7 +22,9 @@ const open_screen = () => {
    
    
     
-  </View>
+    </View>
+  
+  
   )
 }
 
