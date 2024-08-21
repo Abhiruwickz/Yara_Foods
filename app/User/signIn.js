@@ -24,7 +24,7 @@ const SignIn = () => {
         //sign In
         const user = userCredential.user;
         console.log("Logged In Successfully!");
-        router.replace("../(tabs)/Home");
+        router.replace("../appScreens/Home");
 
     } catch (error) {
       switch (error.message) {

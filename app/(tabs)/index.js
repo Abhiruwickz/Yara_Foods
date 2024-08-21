@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { Text, View, TouchableOpacity, TextInput,Image } from "react-native";
 import { router } from "expo-router";
 
-const x = require("../User/signIn")
 
 export default function App() {
   return (
