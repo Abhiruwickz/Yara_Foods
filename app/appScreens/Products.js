@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList,Image } from 'react-native';
 import { ref, onValue } from "firebase/database"; // Import necessary functions
 import { Real_time_database } from "../../firebaseConfig"; // Import your configured database
+import { TouchableOpacity } from 'react-native';
+import { router } from 'expo-router';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -46,18 +48,23 @@ const Products = () => {
   }
 
   return (
-    <View className="flex-1 p-4 mt-20">
+    <View className="flex-1 p-4 mt-8">
+      <View className="flex flex-row gap-60 ">
         <Text className="text-2xl font-bold mb-5">Products</Text>
+        <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
+        <Image source={require("../../assets/images/plus.png")} className="w-[24px] h-[24px]" />
+        </TouchableOpacity>
+        </View>
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View className="mb-4 p-4 border border-gray-300 rounded">
+          <View className="mb-4 p-4 border border-gray-800 rounded-xl bg-slate-100">
             <Text className="font-semibold">Product Name: {item.productName}</Text>
-            <Text>Batch No: {item.batchNo}</Text>
-            <Text>Product Size: {item.productSize}</Text>
-            <Text>Date: {item.date}</Text>
-            <Text>Quantity: {item.quantity}</Text>
+            <Text className="font-semibold">Batch No: {item.batchNo}</Text>
+            <Text className="font-semibold">Product Size: {item.productSize}</Text>
+            <Text className="font-semibold">Date: {item.date}</Text>
+            <Text className="font-semibold">Quantity: {item.quantity}</Text>
           </View>
         )}
       />

@@ -105,7 +105,7 @@ const SignIn = () => {
         <TouchableOpacity
         //continue as a guest button
           className="bg-yellow-500 rounded p-2 w-40 text-center"
-            onPress={() => router.navigate("../(tabs)/Home")}
+            onPress={() => router.navigate("../appScreens/Home")}
         >
           <Text className="text-white text-center font-semibold "> Continue as a Guest </Text>
         </TouchableOpacity>

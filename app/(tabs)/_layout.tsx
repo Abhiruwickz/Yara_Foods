@@ -24,7 +24,7 @@ export default function TabLayout() {
         }}
       />
       
-        <Tabs.Screen
+        {/* <Tabs.Screen
         name="signIn"
         options={{
           title: 'SignIn',
@@ -32,7 +32,7 @@ export default function TabLayout() {
             <TabBarIcon name={focused ? 'code' : 'code-slash-outline'} color={color} />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

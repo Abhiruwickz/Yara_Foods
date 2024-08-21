@@ -8,14 +8,15 @@ import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCdYTjMxs1gSuUEanNfoEE6HiqRqOht3CU",
-  authDomain: "yarafoods-2bcc0.firebaseapp.com",
-  projectId: "yarafoods-2bcc0",
-  storageBucket: "yarafoods-2bcc0.appspot.com",
-  databaseURL: "https://yarafoods-2bcc0-default-rtdb.firebaseio.com",
-  messagingSenderId: "967511739880",
-  appId: "1:967511739880:web:5e0036fdd90de609cfa85d",
-  measurementId: "G-YK311R2TZE"
+  apiKey: "AIzaSyBCPkEenIU7tC9zDm-q58CXFroisGT2Z20",
+  authDomain: "yarafoods-edd51.firebaseapp.com",
+  databaseURL: "https://yarafoods-edd51-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "yarafoods-edd51",
+  storageBucket: "yarafoods-edd51.appspot.com",
+  messagingSenderId: "106429389219",
+  appId: "1:106429389219:web:034fd6f9f56570d475e216",
+  measurementId: "G-4ECN7LG244",
+  databaseURL: "https://yarafoods-edd51-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 // Initialize Firebase

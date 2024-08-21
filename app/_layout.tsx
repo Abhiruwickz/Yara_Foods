@@ -33,6 +33,7 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="index" options={{headerShown: false}} />
         <Stack.Screen name="open_screen" options={{headerShown:false}} />
+        <Stack.Screen name="signIn" options={{headerShown:false}} />
 
       </Stack>
     </ThemeProvider>

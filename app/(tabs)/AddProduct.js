@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity,ScrollView } from 'react-native';
 import { Link, router } from "expo-router";
 import { ref, push } from "firebase/database"; // Import necessary functions
 import { Real_time_database } from "../../firebaseConfig"; // Import your configured database
@@ -55,7 +55,8 @@ const AddProductForm = () => {
   };
 
   return (
-    <View className="flex-1 p-7 mt-32">
+    <ScrollView>
+    <View className="flex-1 p-7 mt-16">
       <View className="flex flex-row space-x-5">
         <TouchableOpacity className="bg-yellow-500">
           <Text className="text-2xl font-bold">Product</Text>
@@ -122,6 +123,7 @@ const AddProductForm = () => {
         <Text className="text-white text-center font-semibold">Add Product</Text>
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 };
 

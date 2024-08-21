@@ -54,7 +54,7 @@ const AddDispatchForm = () => {
   };
 
   return (
-    <View className="flex-1 p-7 mt-32">
+    <View className="flex-1 p-7 mt-16">
       <View className="flex flex-row space-x-5">
         <TouchableOpacity className="bg-yellow-500" >
         <Link href={"../app/(tabs)/AddProduct"}>

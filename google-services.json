@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106429389219",
+    "project_id": "yarafoods-edd51",
+    "storage_bucket": "yarafoods-edd51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106429389219:android:0ff2dd9d9a115e4575e216",
+        "android_client_info": {
+          "package_name": "com.Yara_Foods.yarafood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD6Aglj2MbaozMtZDRd69wpX-B7X8eGiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
