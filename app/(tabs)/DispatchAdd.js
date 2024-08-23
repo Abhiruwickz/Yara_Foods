@@ -1,35 +1,33 @@
 // AddProductForm.jsx
 import React, { useState } from 'react';
-import { View, TextInput,Text,TouchableOpacity  } from 'react-native';
+import { View, TextInput,Text,TouchableOpacity,ScrollView  } from 'react-native';
 import { Link } from 'expo-router';
 import { ref,push } from "firebase/database"
 import { Real_time_database } from "../../firebaseConfig";
+import { Picker } from '@react-native-picker/picker';
 
 
 const AddDispatchForm = () => {
   const [form, setForm] = useState({
     productName: '',
     batchNo: '',
+    productSize: '',
     receiver: '',
     date: '',
     quantity: '',
   });
   const [errors, setErrors] = useState({});
+  const [selectedSize, setSelectedSize] = useState("");
 
   const handleChange = (name, value) => {
     setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = () => {
-    const newErrors = {};
-    if (!form.productName) newErrors.productName = 'Product Name is required';
-    if (!form.batchNo) newErrors.batchNo = 'Batch No is required';
-    if (!form.receiver) newErrors.receiver = 'Receiver is required';
-    if (!form.date) newErrors.date = 'Date is required';
-    if (!form.quantity) newErrors.quantity = 'Quantity is required';
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    const { productName, batchNo, productSize, date, quantity } = form;
+
+    if (!productName || !batchNo || !productSize || !date || !quantity) {
+      Alert.alert('Error', 'All fields are required');
       return;
     }
      // Push the dispatch data to Firebase Realtime Database
@@ -41,6 +39,7 @@ const AddDispatchForm = () => {
       setForm({
         productName: '',
         batchNo: '',
+        productSize: '',
         receiver: '',
         date: '',
         quantity: '',
@@ -54,77 +53,98 @@ const AddDispatchForm = () => {
   };
 
   return (
-    <View className="flex-1 p-7 mt-16">
-      <View className="flex flex-row space-x-5">
-        <TouchableOpacity className="bg-yellow-500" >
-        <Link href={"../app/(tabs)/AddProduct"}>
-          <Text className="text-2xl font-bold">Product</Text>
+    <ScrollView>
+    <View className="flex-1 p-7 mt-12">
+      <View className="flex flex-row space-x-5 justify-center">
+        <TouchableOpacity >
+        <Link href={"../(tabs)/AddProduct"}>
+          <Text className="text-2xl font-bold" >Product</Text>
           </Link>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text className="text-2xl font-bold">Dispatch</Text>
+        <TouchableOpacity className="bg-yellow-500 rounded-lg w-[100px] h-[40px]" >
+          <Text className="text-2xl font-bold text-white ">Dispatch</Text>
         </TouchableOpacity>
 
       </View>
-      <View className="mb-4">
+      <View className="mb-4 mt-4">
         <Text>Product Name</Text>
         <TextInput
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded mt-4"
           value={form.productName}
           onChangeText={(text) => handleChange('productName', text)}
         />
-        {errors.productName && <Text className="text-red-500 text-xs">{errors.productName}</Text>}
+      
       </View>
 
       <View className="mb-4">
         <Text>Batch No:</Text>
         <TextInput
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded mt-4"
           value={form.batchNo}
           onChangeText={(text) => handleChange('batchNo', text)}
         />
-        {errors.batchNo && <Text className="text-red-500 text-xs">{errors.batchNo}</Text>}
+       
       </View>
+      <View className="mb-4">
+          <Text>Product Size</Text>
+          <View className="border rounded-lg mt-4">
+            <Picker
+              selectedValue={selectedSize}
+              onValueChange={(itemValue) => {
+                setSelectedSize(itemValue);
+                handleChange('productSize', itemValue); 
+              }}
+            >
+              <Picker.Item label="100g" value="100g" />
+              <Picker.Item label="200g" value="200g" />
+              <Picker.Item label="600g" value="600g" />
+              <Picker.Item label="1.2Kg" value="1.2Kg" />
+              <Picker.Item label="Other" value="Other" />
+            </Picker>
+          </View>
+         
+        </View>
 
       <View className="mb-4">
         <Text>Receiver</Text>
         <TextInput
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded mt-4"
           value={form.receiver}
           onChangeText={(text) => handleChange('receiver', text)}
         />
-        {errors.receiver && <Text className="text-red-500 text-xs">{errors.receiver}</Text>}
+     
       </View>
 
       <View className="mb-4">
         <Text>Date</Text>
         <TextInput
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded mt-4"
           value={form.date}
           onChangeText={(text) => handleChange('date', text)}
           placeholder="YYYY-MM-DD"
         />
-        {errors.date && <Text className="text-red-500 text-xs">{errors.date}</Text>}
+   
       </View>
 
       <View className="mb-4">
         <Text>Quantity</Text>
         <TextInput
-          className="border border-gray-300 p-2 rounded"
+          className="border border-gray-300 p-2 rounded mt-4"
           value={form.quantity}
           keyboardType="numeric"
           onChangeText={(text) => handleChange('quantity', text)}
         />
-        {errors.quantity && <Text className="text-red-500 text-xs">{errors.quantity}</Text>}
+       
       </View>
 
-      <TouchableOpacity className = "bg-yellow-500 rounded p-3 w-40 text-center ml-20 mt-5"  title="Submit" onPress={handleSubmit}>
+      <TouchableOpacity className = "bg-yellow-500 rounded-lg p-3 w-40 text-center ml-20 mt-5"  title="Submit" onPress={handleSubmit}>
         <Text className="text-white text-center font-semibold">Dispatch Order</Text>
       </TouchableOpacity>
       
       
     
     </View>
+    </ScrollView>
   );
 };
 

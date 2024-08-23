@@ -50,7 +50,7 @@ const SignIn = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center pt-10 gap-4 bg-slate-100">
+    <View className="flex-1 justify-center items-center gap-4 bg-slate-200">
       <View className="text-left right-20">
       <Image source={require("../../assets/images/Yara_Foods.jpg")} className="rounded-lg w-[50px] h-[50px] left-60"></Image>
       <Text className="text-3xl font-medium -top-12"> Hi ! </Text>

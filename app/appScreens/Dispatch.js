@@ -1,55 +1,75 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList,Image,TouchableOpacity } from 'react-native';
-import { ref, onValue } from "firebase/database"; // Import necessary functions
-import { Real_time_database } from "../../firebaseConfig"; // Import your configured database
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { ref, onValue } from 'firebase/database';
+import { Real_time_database } from '../../firebaseConfig';
 import { router } from 'expo-router';
+
 const Dispatch = () => {
   const [dispatches, setDispatches] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Reference to the "Dispatch Orders" node in the database
     const dispatchRef = ref(Real_time_database, 'Dispatch Orders');
 
-    // Listening for changes in the "Dispatch Orders" node
-    onValue(dispatchRef, (snapshot) => {
+    const unsubscribe = onValue(dispatchRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const dispatchList = Object.entries(data).map(([key, value]) => ({
+        const dispatchList = Object.keys(data).map(key => ({
           id: key,
-          ...value,
+          ...data[key]
         }));
         setDispatches(dispatchList);
       } else {
-        setDispatches([]); // No data available
+        setDispatches([]);
       }
+      setLoading(false);
     });
+
+    return () => unsubscribe();
   }, []);
 
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (dispatches.length === 0) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text>No dispatch orders available.</Text>
+      </View>
+    );
+  }
+
   return (
-    <View className="flex-1 p-7 mt-8">
-      <View className="flex flex-row gap-36">
-      <Text className="text-2xl font-bold mb-5">Dispatch Orders</Text>
-      <TouchableOpacity onPress={() => router.navigate("../(tabs)/DispatchAdd")}>
-        <Image source={require("../../assets/images/plus.png")} className="w-[24px] h-[24px]" />
-        </TouchableOpacity>
+    <ScrollView>
+      <View className="flex-1 p-4 mt-8">
+        <View className="flex flex-row justify-between items-center mb-5">
+          <Text className="text-2xl font-bold">Dispatch Orders</Text>
+          <TouchableOpacity onPress={() => router.navigate("../(tabs)/DispatchAdd")}>
+            <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
+          </TouchableOpacity>
         </View>
-      {dispatches.length > 0 ? (
-        <FlatList
-          data={dispatches}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View className="border border-gray-800 p-4 mb-4 rounded-xl bg-slate-100 ">
+        {dispatches.map(item => (
+          <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-slate-100 flex-row justify-between">
+            <View>
               <Text className="font-semibold">Product Name: {item.productName}</Text>
+              <Text className="font-semibold">Product Size: {item.productSize}</Text>
               <Text className="font-semibold">Batch No: {item.batchNo}</Text>
-              <Text  className="font-semibold">Date: {item.date}</Text>
-              <Text  className="font-semibold">Quantity: {item.quantity}</Text>
+              <Text className="font-semibold">Date: {item.date}</Text>
+              <Text className="font-semibold">Quantity: {item.quantity}</Text>
+              <Text className="font-semibold">Receiver: {item.receiver}</Text>
             </View>
-          )}
-        />
-      ) : (
-        <Text>No dispatch orders found.</Text>
-      )}
-    </View>
+            <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditDispatch", params: item })}>
+              <Image source={require('../../assets/images/edit.png')} className="w-[24px] h-[24px]" />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 

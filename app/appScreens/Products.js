@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList,Image } from 'react-native';
-import { ref, onValue } from "firebase/database"; // Import necessary functions
-import { Real_time_database } from "../../firebaseConfig"; // Import your configured database
-import { TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { ref, onValue } from 'firebase/database';
+import { Real_time_database } from '../../firebaseConfig';
 import { router } from 'expo-router';
 
 const Products = () => {
@@ -11,23 +10,21 @@ const Products = () => {
 
   useEffect(() => {
     const productsRef = ref(Real_time_database, 'products');
-    
+
     const unsubscribe = onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        // Convert the products data from an object to an array
         const productList = Object.keys(data).map(key => ({
           id: key,
           ...data[key]
         }));
         setProducts(productList);
       } else {
-        setProducts([]); // In case there are no products
+        setProducts([]);
       }
       setLoading(false);
     });
 
-    // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
 
@@ -48,27 +45,30 @@ const Products = () => {
   }
 
   return (
-    <View className="flex-1 p-4 mt-8">
-      <View className="flex flex-row gap-60 ">
-        <Text className="text-2xl font-bold mb-5">Products</Text>
-        <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
-        <Image source={require("../../assets/images/plus.png")} className="w-[24px] h-[24px]" />
-        </TouchableOpacity>
+    <ScrollView>
+      <View className="flex-1 p-4 mt-8">
+        <View className="flex flex-row justify-between items-center mb-5">
+          <Text className="text-2xl font-bold">Products</Text>
+          <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
+            <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
+          </TouchableOpacity>
         </View>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View className="mb-4 p-4 border border-gray-800 rounded-xl bg-slate-100">
-            <Text className="font-semibold">Product Name: {item.productName}</Text>
-            <Text className="font-semibold">Batch No: {item.batchNo}</Text>
-            <Text className="font-semibold">Product Size: {item.productSize}</Text>
-            <Text className="font-semibold">Date: {item.date}</Text>
-            <Text className="font-semibold">Quantity: {item.quantity}</Text>
+        {products.map(item => (
+          <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-slate-100 flex-row justify-between">
+            <View>
+              <Text className="font-semibold">Product Name: {item.productName}</Text>
+              <Text className="font-semibold">Batch No: {item.batchNo}</Text>
+              <Text className="font-semibold">Product Size: {item.productSize}</Text>
+              <Text className="font-semibold">Date: {item.date}</Text>
+              <Text className="font-semibold">Quantity: {item.quantity}</Text>
+            </View>
+            <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditProduct", params: item })}>
+              <Image source={require('../../assets/images/edit.png')} className="w-[24px] h-[24px]" />
+            </TouchableOpacity>
           </View>
-        )}
-      />
-    </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
