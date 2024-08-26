@@ -45,7 +45,8 @@ export default function Home() {
 
   return (
     <ScrollView>
-      <View className="mt-8 ml-7">
+      <View className="bg-white">
+      <View className="mt-12 ml-7 ">
         <Text className="text-2xl font-bold">Hello, User!</Text>
       </View>
       <View className="p-7 rounded-lg shadow-md bg-yellow-200 ml-4 mr-4 mt-5">
@@ -57,19 +58,19 @@ export default function Home() {
       <Text className="text-lg font-medium mb-3 text-gray-800 ml-7 mt-5">Inventory</Text>
 
       <TouchableOpacity
-        className="p-5 rounded-xl shadow-md bg-yellow-200 ml-4 mr-4 mt-5"
-        onPress={() => router.navigate("../appScreens/Products")}
+        className="p-5 rounded-xl shadow-md bg-yellow-200 ml-4 mr-4 mt-3"
+        onPress={() => router.navigate("../(tabs)/Products")}
       >
         <Image source={require("../../assets/images/product.png")} />
-        <Text className="text-xl font-medium mb-3 text-gray-800">Products</Text>
+        <Text className="text-xl font-medium mb-5 text-gray-800 mt-2">Products</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         className="p-5 rounded-lg shadow-md bg-yellow-200 ml-4 mr-4 mt-5"
-        onPress={() => router.navigate("../appScreens/Dispatch")}
+        onPress={() => router.navigate("../(tabs)/Dispatch")}
       >
         <Image source={require("../../assets/images/lorry.png")} />
-        <Text className="text-lg font-medium mb-3 text-gray-800">Dispatches</Text>
+        <Text className="text-lg font-medium mb-3 text-gray-800 mt-2">Dispatches</Text>
       </TouchableOpacity>
 
       {/* Bar Chart */}
@@ -81,19 +82,19 @@ export default function Home() {
           height={220}
           yAxisLabel=""
           chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
+            backgroundColor: "#ebcc34",
+            backgroundGradientFrom: "#2b2730",
             backgroundGradientTo: "#ffa726",
             decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            color: (opacity = 1) => `rgba(255, 255, 1, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 200, ${opacity})`,
             style: {
               borderRadius: 16,
             },
             propsForDots: {
               r: "6",
               strokeWidth: "2",
-              stroke: "#ffa726",
+              stroke: "#ebcc34",
             },
           }}
           style={{
@@ -102,6 +103,7 @@ export default function Home() {
             marginLeft: 20,
           }}
         />
+      </View>
       </View>
     </ScrollView>
   );

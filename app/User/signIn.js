@@ -5,6 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebase_Auth } from "../../firebaseConfig";
 
+
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +25,7 @@ const SignIn = () => {
         //sign In
         const user = userCredential.user;
         console.log("Logged In Successfully!");
-        router.replace("../appScreens/Home");
+        router.replace("../(tabs)/Home");
 
     } catch (error) {
       switch (error.message) {
@@ -50,18 +51,18 @@ const SignIn = () => {
   };
 
   return (
-    <View className="flex-1 justify-center items-center gap-4 bg-slate-200">
+    <View className="flex-1 justify-center items-center gap-4 bg-white">
       <View className="text-left right-20">
-      <Image source={require("../../assets/images/Yara_Foods.jpg")} className="rounded-lg w-[50px] h-[50px] left-60"></Image>
-      <Text className="text-3xl font-medium -top-12"> Hi ! </Text>
-      <Text className="font-medium text-3xl -top-8 "> Welcome </Text>
+      <Image source={require("../../assets/images/Yara_Foods.jpg")} className="rounded-lg w-[50px] h-[50px] left-60 -top-6"></Image>
+      <Text className="text-3xl font-medium -top-20"> Hi ! </Text>
+      <Text className="font-medium text-3xl -top-16 "> Welcome </Text>
      
       </View>
-      <View className="flex flex-row gap-4 ">
+      <View className="flex flex-row gap-2 -top-5">
         <Image source={require("../../assets/images/user.png")}></Image>
         <Text className="font-normal text-lg text-slate-600"> Office User </Text>
       </View>
-      <View className="gap-6 mr-5 items-center">
+      <View className="gap-6 mr-5 items-center -top-5">
         <View>
           <Text className="font-bold mb-1"> Email </Text>
           <TextInput
@@ -96,19 +97,13 @@ const SignIn = () => {
         
         <TouchableOpacity
         //sign in button
-          className="bg-yellow-500 rounded p-2 w-40 text-center"
+          className="bg-yellow-400 rounded-lg p-3 w-48 text-center top-5"
           onPress={handleSignIn}
         >
           <Text className="text-white text-center font-semibold"> Log In </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-        //continue as a guest button
-          className="bg-yellow-500 rounded p-2 w-40 text-center"
-            onPress={() => router.navigate("../appScreens/Home")}
-        >
-          <Text className="text-white text-center font-semibold "> Continue as a Guest </Text>
-        </TouchableOpacity>
+      
       </View>
       
     </View>

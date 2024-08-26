@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity, ScrollView,Alert } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, ScrollView,Alert, Button, Platform } from 'react-native';
 import { Link, router } from "expo-router";
 import { ref, push } from "firebase/database"; 
 import { Real_time_database } from "../../firebaseConfig"; 
 import { Picker } from "@react-native-picker/picker";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const AddProductForm = () => {
   const [form, setForm] = useState({
@@ -13,11 +14,19 @@ const AddProductForm = () => {
     date: '',
     quantity: '',
   });
-  const [errors, setErrors] = useState({});
+
   const [selectedSize, setSelectedSize] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleChange = (name, value) => {
     setForm({ ...form, [name]: value });
+  };
+  const handleDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(Platform.OS === 'ios'); // On Android, this will hide the picker once a date is selected
+    setDate(currentDate);
+    handleChange('date', currentDate.toISOString().split('T')[0]); // Store date in YYYY-MM-DD format
   };
 
   const handleSubmit = () => {
@@ -52,13 +61,13 @@ const AddProductForm = () => {
   return (
     <ScrollView>
       <View className="flex-1 p-7 mt-10">
-        <View className="flex flex-row space-x-5 items-center justify-center">
-          <TouchableOpacity className="bg-yellow-500">
-            <Text className="text-2xl font-bold">Product</Text>
+        <View className="flex flex-row items-center justify-center border-opacity-40 rounded-lg ">
+          <TouchableOpacity className="bg-yellow-400 rounded-lg p-2 w-[151px]">
+            <Text className="text-xl font-bold text-center">Product</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Link href={"../(tabs)/DispatchAdd"}>
-              <Text className="text-2xl font-bold">Dispatch</Text>
+          <TouchableOpacity className="bg-slate-300 rounded-lg p-2 w-[151px] ">
+            <Link href={"../appScreens/DispatchAdd"} className='text-center'>
+              <Text className="text-xl font-bold ">Dispatch</Text>
             </Link>
           </TouchableOpacity>
         </View>
@@ -102,13 +111,21 @@ const AddProductForm = () => {
 
         <View className="mb-4">
           <Text>Date</Text>
-          <TextInput
-            className="border border-gray-300 p-2 rounded mt-4"
-            value={form.date}
-            onChangeText={(text) => handleChange('date', text)}
-            placeholder="YYYY-MM-DD"
-          />
+          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+            <View className="border border-gray-300 p-2 rounded mt-4">
+              <Text>{date.toISOString().split('T')[0]}</Text>
+            </View>
+          </TouchableOpacity>
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display="default"
+              onChange={handleDateChange}
+            />
+          )}
         </View>
+
 
         <View className="mb-4">
           <Text>Quantity</Text>

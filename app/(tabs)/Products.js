@@ -4,23 +4,23 @@ import { ref, onValue } from 'firebase/database';
 import { Real_time_database } from '../../firebaseConfig';
 import { router } from 'expo-router';
 
-const Dispatch = () => {
-  const [dispatches, setDispatches] = useState([]);
+const Products = () => {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const dispatchRef = ref(Real_time_database, 'Dispatch Orders');
+    const productsRef = ref(Real_time_database, 'products');
 
-    const unsubscribe = onValue(dispatchRef, (snapshot) => {
+    const unsubscribe = onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const dispatchList = Object.keys(data).map(key => ({
+        const productList = Object.keys(data).map(key => ({
           id: key,
           ...data[key]
         }));
-        setDispatches(dispatchList);
+        setProducts(productList);
       } else {
-        setDispatches([]);
+        setProducts([]);
       }
       setLoading(false);
     });
@@ -36,41 +36,45 @@ const Dispatch = () => {
     );
   }
 
-  if (dispatches.length === 0) {
+  if (products.length === 0) {
     return (
-      <View className="flex-1 justify-center items-center">
-        <Text>No dispatch orders available.</Text>
+      <View className="flex-1 justify-center items-center bg-white flex-row">
+        <Text>No products available.</Text>
+        <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
+            <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px] p-3 left-16 " />
+          </TouchableOpacity>
       </View>
     );
   }
 
   return (
     <ScrollView>
-      <View className="flex-1 p-4 mt-8">
+   
+      <View className="flex-1 p-4 mt-8 ">
         <View className="flex flex-row justify-between items-center mb-5">
-          <Text className="text-2xl font-bold">Dispatch Orders</Text>
-          <TouchableOpacity onPress={() => router.navigate("../(tabs)/DispatchAdd")}>
+          <Text className="text-2xl font-bold">Products</Text>
+          <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
             <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
           </TouchableOpacity>
         </View>
-        {dispatches.map(item => (
-          <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-slate-100 flex-row justify-between">
+        {products.map(item => (
+          <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-white flex-row justify-between">
             <View>
-              <Text className="font-semibold">Product Name: {item.productName}</Text>
-              <Text className="font-semibold">Product Size: {item.productSize}</Text>
+              <Text className="font-bold text-lg">{item.productName}</Text>
               <Text className="font-semibold">Batch No: {item.batchNo}</Text>
+              <Text className="font-semibold">Product Size: {item.productSize}</Text>
               <Text className="font-semibold">Date: {item.date}</Text>
               <Text className="font-semibold">Quantity: {item.quantity}</Text>
-              <Text className="font-semibold">Receiver: {item.receiver}</Text>
             </View>
-            <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditDispatch", params: item })}>
+            <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditProduct", params: item })}>
               <Image source={require('../../assets/images/edit.png')} className="w-[24px] h-[24px]" />
             </TouchableOpacity>
           </View>
         ))}
       </View>
+    
     </ScrollView>
   );
 };
 
-export default Dispatch;
+export default Products;

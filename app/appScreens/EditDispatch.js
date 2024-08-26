@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert,TouchableOpacity,ScrollView } from 'react-native';
 import { ref, update, remove } from 'firebase/database';
 import { Real_time_database } from '../../firebaseConfig';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
+
 
 const EditDispatch = () => {
   const { id, productName, batchNo, productSize, date, quantity, receiver } = useLocalSearchParams();
@@ -63,24 +64,25 @@ const EditDispatch = () => {
   };
 
   return (
-    <View className="flex-1 p-4">
-      <Text className="text-2xl font-bold mb-4">Edit Dispatch</Text>
-      <Text>Product Name</Text>
+    <ScrollView>
+    <View className="flex-1 p-4 bg-white">
+      <Text className="text-2xl font-bold mb-4 text-center">Edit Dispatch</Text>
+      
       <TextInput
         value={updatedProductName}
         onChangeText={setUpdatedProductName}
         placeholder="Product Name"
-        className="border p-2 mb-4"
+          className="border border-gray-300 p-2 rounded mt-4"
       />
-      <Text>Product Name</Text>
+ 
       <TextInput
         value={updatedBatchNo}
         onChangeText={setUpdatedBatchNo}
         placeholder="Batch No"
-        className="border p-2 mb-4"
+       className="border border-gray-300 p-2 rounded mt-4"
       />
       <View className="mb-4">
-        <Text>Product Size</Text>
+   
         <View className="border rounded-lg mt-4">
           <Picker
             selectedValue={updatedProductSize}
@@ -94,33 +96,42 @@ const EditDispatch = () => {
           </Picker>
         </View>
       </View>
-      <Text>Product Name</Text>
+    
       <TextInput
         value={updatedDate}
         onChangeText={setUpdatedDate}
         placeholder="Date"
-        className="border p-2 mb-4"
+         className="border border-gray-300 p-2 rounded mt-4"
       />
-      <Text>Product Name</Text>
+    
       <TextInput
         value={updatedQuantity}
         onChangeText={setUpdatedQuantity}
         placeholder="Quantity"
         keyboardType="numeric"
-        className="border p-2 mb-4"
+        className="border border-gray-300 p-2 rounded mt-4"
       />
-      <Text>Product Name</Text>
+    
       <TextInput
         value={updatedReceiver}
         onChangeText={setUpdatedReceiver}
         placeholder="Receiver"
-        className="border p-2 mb-4"
+       className="border border-gray-300 p-2 rounded mt-4"
       />
-      <Button title="Save" onPress={handleSave} />
-      <View className="mt-4">
-        <Button title="Delete" color="red" onPress={handleDelete} />
+     <View className="mt-10 flex flex-row ">
+        <TouchableOpacity   
+        className="bg-blue-400 rounded-lg p-3 w-36 text-center mr-7 ml-2"
+        onPress={handleSave} >
+            <Text className="text-white text-center font-semibold"> Save </Text>
+        </TouchableOpacity>
+        <TouchableOpacity   
+        className="bg-red-600 rounded-lg p-3 w-36 text-center "
+        onPress={handleDelete} >
+            <Text className="text-white text-center font-semibold"> Delete </Text>
+        </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
   );
 };
 

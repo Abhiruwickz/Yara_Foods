@@ -15,24 +15,44 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
+        name="Home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name={focused ? 'home' : 'home-sharp'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="AddProduct"
+        options={{
+          title: 'Add Product',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'add-circle-sharp' : 'add-circle-sharp'} color={color} />
           ),
         }}
       />
       
-        {/* <Tabs.Screen
-        name="signIn"
+        <Tabs.Screen
+        name="Products"
         options={{
-          title: 'SignIn',
+          title: 'Products',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'bag' : 'bag'} color={color} />
           ),
         }}
-      /> */}
+      />
+      
+         <Tabs.Screen
+        name="Dispatch"
+        options={{
+          title: 'Dispatches',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'car-sharp' : 'car-sharp'} color={color} />
+          ),
+        }}
+      />
+    
     </Tabs>
   );
 }
