@@ -40,7 +40,7 @@ const Dispatch = () => {
 
   return (
     <ScrollView>
-      <View className="flex-1 p-4 mt-8">
+      <View className="flex-1 p-4 mt-8 bg-white">
         <View className="flex flex-row justify-between items-center mb-5">
           <Text className="text-2xl font-bold">Dispatch Orders</Text>
           <TouchableOpacity onPress={() => router.navigate("../appScreens/DispatchAdd")}>

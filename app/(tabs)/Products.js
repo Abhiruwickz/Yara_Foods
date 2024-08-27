@@ -36,19 +36,10 @@ const Products = () => {
     );
   }
 
-  // if (products.length === 0) {
-  //   return (
-  //     <View className="flex-1 justify-center items-center bg-white flex-row">
-  //       <Text>No products available.</Text>
-       
-  //     </View>
-  //   );
-  // }
-
   return (
     <ScrollView>
    
-      <View className="flex-1 p-4 mt-8 ">
+      <View className="flex-1 p-4 mt-8 bg-white">
         <View className="flex flex-row justify-between items-center mb-5">
           <Text className="text-2xl font-bold">Products</Text>
           <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
