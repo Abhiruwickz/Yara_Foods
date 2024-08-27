@@ -36,16 +36,14 @@ const Products = () => {
     );
   }
 
-  if (products.length === 0) {
-    return (
-      <View className="flex-1 justify-center items-center bg-white flex-row">
-        <Text>No products available.</Text>
-        <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
-            <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px] p-3 left-16 " />
-          </TouchableOpacity>
-      </View>
-    );
-  }
+  // if (products.length === 0) {
+  //   return (
+  //     <View className="flex-1 justify-center items-center bg-white flex-row">
+  //       <Text>No products available.</Text>
+       
+  //     </View>
+  //   );
+  // }
 
   return (
     <ScrollView>

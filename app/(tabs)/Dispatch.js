@@ -36,13 +36,7 @@ const Dispatch = () => {
     );
   }
 
-  if (dispatches.length === 0) {
-    return (
-      <View className="flex-1 justify-center items-center">
-        <Text>No dispatch orders available.</Text>
-      </View>
-    );
-  }
+
 
   return (
     <ScrollView>
