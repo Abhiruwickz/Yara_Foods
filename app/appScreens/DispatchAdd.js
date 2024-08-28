@@ -101,8 +101,8 @@ const AddDispatchForm = () => {
   };
 
   return (
-    <ScrollView>
-      <View className="flex-1 p-7 mt-10  bg-white">
+    <ScrollView className="flex-1 bg-white">
+      <View className="flex-1 p-7 mt-10 bg-white">
         <View className="flex flex-row items-center justify-center border-opacity-40 rounded-lg">
           <TouchableOpacity className="bg-slate-300 rounded-lg p-2 w-[151px]">
             <Link href={"../(tabs)/AddProduct"} className='text-center'>

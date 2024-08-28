@@ -61,6 +61,7 @@ const EditProduct = () => {
 
   return (
     <View className="flex-1 p-4 bg-white ">
+      <View className="mt-20">
       <Text className="text-2xl font-bold mb-4 text-center">Edit Product</Text>
       <TextInput
         value={updatedProductName}
@@ -72,12 +73,6 @@ const EditProduct = () => {
         value={updatedBatchNo}
         onChangeText={setUpdatedBatchNo}
         placeholder="Batch No"
-        className="border border-gray-300 p-2 rounded mt-4"
-      />
-      <TextInput
-        value={updatedProductSize}
-        onChangeText={setUpdatedProductSize}
-        placeholder="Product Size"
         className="border border-gray-300 p-2 rounded mt-4"
       />
       <TextInput
@@ -105,6 +100,7 @@ const EditProduct = () => {
         onPress={handleDelete} >
             <Text className="text-white text-center font-semibold"> Delete </Text>
         </TouchableOpacity>
+      </View>
       </View>
     </View>
   );

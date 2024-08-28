@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from "react-native";
-import { Picker } from "@react-native-picker/picker"; // Import the Picker component
+import { Picker } from "@react-native-picker/picker";
 import { router } from "expo-router";
-import { LineChart } from "react-native-chart-kit"; // Import the LineChart component
+import { LineChart } from "react-native-chart-kit";
 import { ref, onValue } from "firebase/database";
 import { Real_time_database } from "../../firebaseConfig";
 

@@ -64,8 +64,11 @@ const EditDispatch = () => {
   };
 
   return (
+    <View className="bg-white flex-1">
     <ScrollView>
-    <View className="flex-1 p-4 bg-white">
+
+    <View className="flex-1 p-4">
+      <View className="mt-20">
       <Text className="text-2xl font-bold mb-4 text-center">Edit Dispatch</Text>
       
       <TextInput
@@ -81,22 +84,7 @@ const EditDispatch = () => {
         placeholder="Batch No"
        className="border border-gray-300 p-2 rounded mt-4"
       />
-      <View className="mb-4">
-   
-        <View className="border rounded-lg mt-4">
-          <Picker
-            selectedValue={updatedProductSize}
-            onValueChange={(itemValue) => setUpdatedProductSize(itemValue)} 
-          >
-            <Picker.Item label="100g" value="100g" />
-            <Picker.Item label="200g" value="200g" />
-            <Picker.Item label="600g" value="600g" />
-            <Picker.Item label="1.2Kg" value="1.2Kg" />
-            <Picker.Item label="Other" value="Other" />
-          </Picker>
-        </View>
-      </View>
-    
+ 
       <TextInput
         value={updatedDate}
         onChangeText={setUpdatedDate}
@@ -130,8 +118,11 @@ const EditDispatch = () => {
             <Text className="text-white text-center font-semibold"> Delete </Text>
         </TouchableOpacity>
       </View>
+      </View>
     </View>
+    
     </ScrollView>
+    </View>
   );
 };
 

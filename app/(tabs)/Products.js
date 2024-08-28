@@ -18,6 +18,10 @@ const Products = () => {
           id: key,
           ...data[key]
         }));
+
+        // Sort products by date in ascending order
+        productList.sort((a, b) => new Date(b.date) - new Date(a.date));
+
         setProducts(productList);
       } else {
         setProducts([]);
@@ -30,39 +34,39 @@ const Products = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 justify-center items-center">
+      <View className="flex-1 justify-center items-center bg-white">
         <Text>Loading...</Text>
       </View>
     );
   }
 
   return (
-    <ScrollView>
-   
-      <View className="flex-1 p-4 mt-8 bg-white">
-        <View className="flex flex-row justify-between items-center mb-5">
-          <Text className="text-2xl font-bold">Products</Text>
-          <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
-            <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
-          </TouchableOpacity>
-        </View>
-        {products.map(item => (
-          <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-white flex-row justify-between">
-            <View>
-              <Text className="font-bold text-lg">{item.productName}</Text>
-              <Text className="font-semibold">Batch No: {item.batchNo}</Text>
-              <Text className="font-semibold">Product Size: {item.productSize}</Text>
-              <Text className="font-semibold">Date: {item.date}</Text>
-              <Text className="font-semibold">Quantity: {item.quantity}</Text>
-            </View>
-            <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditProduct", params: item })}>
-              <Image source={require('../../assets/images/edit.png')} className="w-[24px] h-[24px]" />
+    <View className="flex-1 bg-white">
+      <ScrollView>
+        <View className="p-4 mt-8">
+          <View className="flex flex-row justify-between items-center mb-5">
+            <Text className="text-2xl font-bold">Products</Text>
+            <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
+              <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
             </TouchableOpacity>
           </View>
-        ))}
-      </View>
-    
-    </ScrollView>
+          {products.map(item => (
+            <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-white flex-row justify-between">
+              <View>
+                <Text className="font-bold text-lg">{item.productName}</Text>
+                <Text className="font-semibold">Batch No: {item.batchNo}</Text>
+                <Text className="font-semibold">Product Size: {item.productSize}</Text>
+                <Text className="font-semibold">Date: {item.date}</Text>
+                <Text className="font-semibold">Quantity: {item.quantity}</Text>
+              </View>
+              <TouchableOpacity onPress={() => router.push({ pathname: "../appScreens/EditProduct", params: item })}>
+                <Image source={require('../../assets/images/edit.png')} className="w-[24px] h-[24px]" />
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 

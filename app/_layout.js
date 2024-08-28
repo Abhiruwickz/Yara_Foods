@@ -28,6 +28,8 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="User/signIn" options={{ headerShown: false }} />
         <Stack.Screen name="appScreens/DispatchAdd" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/EditDispatch" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/EditProduct" options={{ headerShown: false }} />
         
         {/* Add more screens here if needed */}
       </Stack>

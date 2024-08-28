@@ -6,7 +6,8 @@ const x = require("../(tabs)/Home")
 const open_screen = () => {
   return (
  
-    <View className = "items-center flex-1 mt-44 ">
+    <View className = "items-center flex-1 bg-white ">
+      <View className="mt-44 items-center">
     <Image source={require("../../assets/images/Yara_Foods.jpg")} className="rounded-lg w-[100px] h-[100px]"></Image>
     <Text className="font-semibold text-xl text-center items-center mt-12"> Welcome to the Yara Foods! </Text>
     <TouchableOpacity
@@ -19,7 +20,7 @@ const open_screen = () => {
           <Text className="text-white ml-2 font-semibold text-center"> Continue as a Guest </Text>
         </TouchableOpacity>    
    
-   
+        </View>
    
     
     

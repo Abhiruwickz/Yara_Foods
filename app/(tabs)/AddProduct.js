@@ -60,7 +60,8 @@ const AddProductForm = () => {
 
   return (
     <ScrollView>
-      <View className="flex-1 p-7 mt-10">
+      <View className="flex-1 p-7  bg-white">
+        <View className="mt-10 ">
         <View className="flex flex-row items-center justify-center border-opacity-40 rounded-lg ">
           <TouchableOpacity className="bg-yellow-400 rounded-lg p-2 w-[151px]">
             <Text className="text-xl font-bold text-center">Product</Text>
@@ -140,6 +141,7 @@ const AddProductForm = () => {
         <TouchableOpacity className="bg-yellow-500 rounded-lg p-3 w-40 text-center ml-20 mt-5" title="Submit" onPress={handleSubmit}>
           <Text className="text-white text-center font-semibold">Add Product</Text>
         </TouchableOpacity>
+      </View>
       </View>
     </ScrollView>
   );
