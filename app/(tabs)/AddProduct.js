@@ -59,7 +59,7 @@ const AddProductForm = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView className="flex-1 bg-white">
       <View className="flex-1 p-7  bg-white">
         <View className="mt-10 ">
         <View className="flex flex-row items-center justify-center border-opacity-40 rounded-lg ">
