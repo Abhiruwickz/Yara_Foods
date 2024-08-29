@@ -8,10 +8,13 @@ The Yara Foods Products app offers a user-friendly interface for managing and di
 
 ## Tech Stack
 
--React Native: Used for building the app's user interface, providing a smooth and responsive experience across both Android and iOS platforms.
--Expo: A framework and platform for universal React applications, simplifying development with features like easy build and deployment options.
--Firebase Realtime Database: Utilized for real-time data synchronization, allowing for efficient management and retrieval of dispatch orders and product information.
--Tailwind CSS: Applied for styling the app, enabling a consistent and visually appealing design with utility-first CSS classes.
+- React Native: Used for building the app's user interface, providing a smooth and responsive experience across both Android and iOS platforms.
+
+- Expo: A framework and platform for universal React applications, simplifying development with features like easy build and deployment options.
+
+- Firebase Realtime Database: Utilized for real-time data synchronization, allowing for efficient management and retrieval of dispatch orders and product information.
+
+- Tailwind CSS: Applied for styling the app, enabling a consistent and visually appealing design with utility-first CSS classes.
 
 ## Learn more
 ![Yara Foods Products Logo](assets/images/Yara_Foods.jpg)
