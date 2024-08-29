@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { router } from "expo-router";
-import { LineChart } from "react-native-chart-kit";
+import { BarChart } from "react-native-chart-kit";
 import { ref, onValue } from "firebase/database";
 import { Real_time_database } from "../../firebaseConfig";
 
@@ -131,7 +131,7 @@ export default function Home() {
         {/* Line Chart */}
         <View className="mt-10">
           <Text className="text-lg font-medium mb-3 text-gray-800 ml-7">Analysis</Text>
-          <LineChart
+          <BarChart
             data={{
               labels: ["Quantity", "Dispatches"],
               datasets: [

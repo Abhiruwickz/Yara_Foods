@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Yara_Foods",
-    "slug": "Yara_Foods",
+    "slug": "yara-foods",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.casioabx.yarafoods"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6bbb5da2-0095-4f4b-ab0f-0128cc2c1936"
+      }
+    },
+    "owner": "casioabx"
   }
 }

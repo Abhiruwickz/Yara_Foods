@@ -33,9 +33,9 @@ const AddDispatchForm = () => {
   };
 
   const handleSubmit = async () => {
-    const { productName, batchNo, productSize, date, quantity } = form;
+    const { batchNo, productSize, date, quantity } = form;
 
-    if (!productName || !batchNo || !productSize || !date || !quantity) {
+    if (!batchNo || !productSize || !date || !quantity) {
       Alert.alert('Error', 'All fields are required');
       return;
     }
@@ -56,8 +56,9 @@ const AddDispatchForm = () => {
       let productKey = null;
 
       snapshot.forEach((childSnapshot) => {
-        if (childSnapshot.val().batchNo === batchNo) {
-          productData = childSnapshot.val();
+        const product = childSnapshot.val();
+        if (product.batchNo === batchNo && product.productSize === productSize) {
+          productData = product;
           productKey = childSnapshot.key;
         }
       });
@@ -120,6 +121,7 @@ const AddDispatchForm = () => {
             className="border border-gray-300 p-2 rounded mt-4"
             value={form.productName}
             onChangeText={(text) => handleChange('productName', text)}
+           
           />
         </View>
 

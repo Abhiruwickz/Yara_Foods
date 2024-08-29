@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue, update } from 'firebase/database';
 import { Real_time_database } from '../../firebaseConfig';
 import { router } from 'expo-router';
 
@@ -10,26 +10,60 @@ const Products = () => {
 
   useEffect(() => {
     const productsRef = ref(Real_time_database, 'products');
+    const dispatchesRef = ref(Real_time_database, 'Dispatch Orders');
 
-    const unsubscribe = onValue(productsRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const productList = Object.keys(data).map(key => ({
-          id: key,
-          ...data[key]
-        }));
+    // Fetch products
+    const fetchProducts = () => {
+      onValue(productsRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const productList = Object.keys(data).map(key => ({
+            id: key,
+            ...data[key]
+          }));
 
-        // Sort products by date in ascending order
-        productList.sort((a, b) => new Date(b.date) - new Date(a.date));
+          // Sort products by date in ascending order
+          productList.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        setProducts(productList);
-      } else {
-        setProducts([]);
-      }
-      setLoading(false);
-    });
+          setProducts(productList);
+        } else {
+          setProducts([]);
+        }
+        setLoading(false);
+      });
+    };
 
-    return () => unsubscribe();
+    // Fetch dispatches and update product quantities
+    const fetchDispatches = () => {
+      onValue(dispatchesRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const dispatches = Object.keys(data).map(key => data[key]);
+
+          dispatches.forEach(dispatch => {
+            // Find the product by batch number and size
+            const productRef = ref(Real_time_database, `products/${dispatch.batchNo}`);
+            onValue(productRef, (productSnapshot) => {
+              const productData = productSnapshot.val();
+              if (productData) {
+                const newQuantity = parseInt(productData.quantity, 10) - parseInt(dispatch.quantity, 10);
+                if (newQuantity >= 0) {
+                  update(productRef, { quantity: newQuantity });
+                }
+              }
+            });
+          });
+        }
+      });
+    };
+
+    fetchProducts();
+    fetchDispatches();
+
+    // Cleanup
+    return () => {
+      // Optionally: Unsubscribe from listeners
+    };
   }, []);
 
   if (loading) {
