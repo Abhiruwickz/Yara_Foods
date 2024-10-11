@@ -23,36 +23,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="AddProduct"
-        options={{
-          title: 'Add Product',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'add-circle-sharp' : 'add-circle-sharp'} color={color} />
-          ),
-        }}
-      />
-      
-        <Tabs.Screen
-        name="Products"
-        options={{
-          title: 'Products',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'bag' : 'bag'} color={color} />
-          ),
-        }}
-      />
-      
-         <Tabs.Screen
-        name="Dispatch"
-        options={{
-          title: 'Dispatches',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'car-sharp' : 'car-sharp'} color={color} />
-          ),
-        }}
-      />
-    
     </Tabs>
   );
 }

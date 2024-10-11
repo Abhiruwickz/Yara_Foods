@@ -9,13 +9,13 @@ export default function App() {
   return (
     <View className="items-center flex-1 justify-center bg-white">
       <Image
-        source={require("../assets/images/Yara_Foods.jpg")}
-        className="rounded-lg w-[200px] h-[200px]"
+        source={require("../assets/images/coconut_milk.png")}
+        className="rounded-lg w-[250px] h-[250px]"
       />
       <View>
         <TouchableOpacity
-          className="bg-yellow-500 rounded text-white p-2 w-[300px] h-[40px] text-center justify-center items-center mt-20"
-          onPress={() => router.navigate("../User/open_screen")}
+          className="rounded-lg text-white p-2 w-[300px] h-[40px] text-center justify-center items-center mt-20 bg-yellow-950"
+          onPress={() => router.navigate("../(tabs)/Home")}
         >
           <Text className="text-white text-center font-semibold">
             Get Started

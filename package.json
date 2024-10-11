@@ -1,5 +1,5 @@
 {
-  "name": "yara_foods",
+  "name": "milk-volume-calculator",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
