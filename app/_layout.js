@@ -24,8 +24,12 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="User/open_screen" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-
+        <Stack.Screen name="User/signIn" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/DispatchAdd" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/EditDispatch" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/EditProduct" options={{ headerShown: false }} />
         
         {/* Add more screens here if needed */}
       </Stack>
