@@ -46,6 +46,9 @@ const Dispatch = () => {
         <View className="p-4 mt-8 bg-white">
           <View className="flex flex-row justify-between items-center mb-5">
             <Text className="text-2xl font-bold">Dispatch Orders</Text>
+            <TouchableOpacity onPress={() => router.navigate("../appScreens/DispatchExportPage")}>
+            <Image source={require('../../assets/images/download.png')} className="w-[32px] h-[32px] ml-18" />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => router.navigate("../appScreens/DispatchAdd")}>
               <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
             </TouchableOpacity>

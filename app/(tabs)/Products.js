@@ -80,9 +80,13 @@ const Products = () => {
         <View className="p-4 mt-8">
           <View className="flex flex-row justify-between items-center mb-5">
             <Text className="text-2xl font-bold">Products</Text>
+            <TouchableOpacity onPress={() => router.navigate("../appScreens/ProductExportPage")}>
+            <Image source={require('../../assets/images/download.png')} className="w-[32px] h-[32px] ml-20" />
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => router.navigate("../(tabs)/AddProduct")}>
               <Image source={require('../../assets/images/plus.png')} className="w-[24px] h-[24px]" />
             </TouchableOpacity>
+         
           </View>
           {products.map(item => (
             <View key={item.id} className="mb-4 p-4 border border-gray-800 rounded-xl bg-white flex-row justify-between">

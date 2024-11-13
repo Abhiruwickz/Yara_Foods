@@ -30,8 +30,10 @@ export default function RootLayout() {
         <Stack.Screen name="appScreens/DispatchAdd" options={{ headerShown: false }} />
         <Stack.Screen name="appScreens/EditDispatch" options={{ headerShown: false }} />
         <Stack.Screen name="appScreens/EditProduct" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/ProductExportPage" options={{ headerShown: false }} />
+        <Stack.Screen name="appScreens/DispatchExportPage" options={{ headerShown: false }} />
         
-        {/* Add more screens here if needed */}
+    
       </Stack>
     </ThemeProvider>
   );
